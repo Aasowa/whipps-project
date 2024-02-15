@@ -1,7 +1,7 @@
 # create VPC
 
 resource "aws_vpc" "whipps-vpc" {
-  cidr_block       = "10.0.0.0/16"
+  cidr_block       = var.vpc_cidr
   instance_tenancy = "default"
 
   tags = {
@@ -12,7 +12,7 @@ resource "aws_vpc" "whipps-vpc" {
 # create Public Subnet
 resource "aws_subnet" "whipps-public-sub-1" {
   vpc_id     = aws_vpc.whipps-vpc.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = var.public_sub_1_cidr
 
   tags = {
     Name = "whipps-public-sub-1"
@@ -21,7 +21,7 @@ resource "aws_subnet" "whipps-public-sub-1" {
 
 resource "aws_subnet" "whipps-public-sub-2" {
   vpc_id     = aws_vpc.whipps-vpc.id
-  cidr_block = "10.0.2.0/24"
+  cidr_block =var.public_sub_2_cidr
 
   tags = {
     Name = "whipps-public-sub-2"
@@ -31,7 +31,7 @@ resource "aws_subnet" "whipps-public-sub-2" {
 # create Private Subnet
 resource "aws_subnet" "whipps-private-sub-1" {
   vpc_id     = aws_vpc.whipps-vpc.id
-  cidr_block = "10.0.3.0/24"
+  cidr_block = var.private_sub_1_cidr
 
   tags = {
     Name = "whipps-private-sub-1"
@@ -40,7 +40,7 @@ resource "aws_subnet" "whipps-private-sub-1" {
 
 resource "aws_subnet" "whipps-private-sub-2" {
   vpc_id     = aws_vpc.whipps-vpc.id
-  cidr_block = "10.0.4.0/24"
+  cidr_block = var.private_sub_2_cidr
 
   tags = {
     Name = "whipps-private-sub-2"
